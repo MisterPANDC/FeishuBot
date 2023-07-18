@@ -7,14 +7,16 @@
 ```
 python kb_setting.py
 ```
-在shell文件`bot_run_config.sh`中设置参数
-主要设置公网端口，本地知识库id等
 
+在`configs/model_config.py`中设置基本参数
+
+其余参数设置公网端口，本地知识库id等，可以视为参数传入`chatbot.py`
+可以直接运行shell脚本
 ```
 bash bot_run_config.sh
 ```
 
-或者也可以手动传参运行`chatbot.py`
+也可以传参直接运行`chatbot.py`
 ```
 python chatbot.py
 ```
