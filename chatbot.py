@@ -29,6 +29,7 @@ local_doc_id = "lab"#当前只测试lab即可，后面会作为可以传入的�
 _, _, _, vs_path = create_path(local_doc_id)
 
 #这里改用fastapi中的Request
+@app.post("/")
 async def local_doc_chat(request: Request):
     json_post_raw = await request.json()
     print(type(json_post_raw))
@@ -78,10 +79,11 @@ if __name__ == "__main__":
     args_dict = vars(args)
     shared.loaderCheckPoint = LoaderCheckPoint(args_dict)
     local_doc_qa = LocalDocQA()
+    llm_model_ins = shared.loaderLLM()
     local_doc_qa.init_cfg(
     llm_model=llm_model_ins,
     embedding_model=EMBEDDING_MODEL,
     embedding_device=EMBEDDING_DEVICE,
     top_k=VECTOR_SEARCH_TOP_K,
     )
-    api_start(args.host, args.port, ssl_keyfile=args.ssl_keyfile, ssl_certfile=args.ssl_certfile)
+    uvicorn.run(app, args.host, args.port, workers=1)
