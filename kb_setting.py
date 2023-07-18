@@ -5,7 +5,7 @@ from configs.model_config import (KB_ROOT_PATH, EMBEDDING_DEVICE,
                                   VECTOR_SEARCH_TOP_K, LLM_HISTORY_LEN, OPEN_CROSS_DOMAIN)
 
 import models.shared as shared
-
+from models.loader.args import DEFAULT_ARGS
 local_doc_qa = LocalDocQA()
 llm_model_ins = shared.loaderLLM()
 local_doc_qa.init_cfg(
@@ -37,6 +37,6 @@ def create_db(file_path, vs_path):
     local_doc_qa.init_knowledge_vector_store([file_path], vs_path) #file_path转为一个list 可以传入多个文件
 
 if __name__ == "__main__":
-    shared.loaderCheckPoint = LoaderCheckPoint(args_dict)
+    shared.loaderCheckPoint = LoaderCheckPoint(DEFAULT_ARGS)
     _, _, file_path, vs_path = create_path(local_doc_id, 'test.txt')
     create_db(file_path, vs_path)
