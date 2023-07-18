@@ -340,7 +340,7 @@ async def local_doc_chat(
             history=history,
             source_documents=source_documents,
         )
-
+#feishu api中式返回了一个字典，这里返回的是ChatMessage 类，其实手动改成字典也行？
 
 async def bing_search_chat(
         question: str = Body(..., description="Question", example="工伤保险是什么？"),
