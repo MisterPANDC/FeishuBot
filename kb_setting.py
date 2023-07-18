@@ -4,13 +4,16 @@ from configs.model_config import (KB_ROOT_PATH, EMBEDDING_DEVICE,
                                   EMBEDDING_MODEL, NLTK_DATA_PATH,
                                   VECTOR_SEARCH_TOP_K, LLM_HISTORY_LEN, OPEN_CROSS_DOMAIN)
 
+import models.shared as shared
+
 local_doc_qa = LocalDocQA()
+llm_model_ins = shared.loaderLLM()
 local_doc_qa.init_cfg(
     llm_model=llm_model_ins,
     embedding_model=EMBEDDING_MODEL,
     embedding_device=EMBEDDING_DEVICE,
     top_k=VECTOR_SEARCH_TOP_K,
-    )
+)
 local_doc_id = "lab"#当前只测试lab即可，后面会作为可以传入的参数
 
 def create_path(local_doc_id, file_name = None):
@@ -34,5 +37,6 @@ def create_db(file_path, vs_path):
     local_doc_qa.init_knowledge_vector_store([file_path], vs_path) #file_path转为一个list 可以传入多个文件
 
 if __name__ == "__main__":
+    shared.loaderCheckPoint = LoaderCheckPoint(args_dict)
     _, _, file_path, vs_path = create_path(local_doc_id, 'test.txt')
     create_db(file_path, vs_path)
