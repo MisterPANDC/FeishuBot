@@ -3,7 +3,7 @@
 ## Getting started
 ### step1: 启动基于本地知识库的ChatGLM，搭建api
 
-手动构建知识库
+手动构建知识库,将文件放入知识库路径中,生成embedding构成知识库
 ```
 python kb_setting.py
 ```
