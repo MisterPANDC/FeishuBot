@@ -1,5 +1,6 @@
 import os
 from chains.local_doc_qa import LocalDocQA
+from configs.model_config import *
 from configs.model_config import (KB_ROOT_PATH, EMBEDDING_DEVICE,
                                   EMBEDDING_MODEL, NLTK_DATA_PATH,
                                   VECTOR_SEARCH_TOP_K, LLM_HISTORY_LEN, OPEN_CROSS_DOMAIN)
@@ -7,6 +8,8 @@ from configs.model_config import (KB_ROOT_PATH, EMBEDDING_DEVICE,
 import models.shared as shared
 from models.loader.args import DEFAULT_ARGS
 from models.loader.args import parser
+from models.loader import LoaderCheckPoint
+
 local_doc_qa = LocalDocQA()
 llm_model_ins = shared.loaderLLM()
 local_doc_qa.init_cfg(
